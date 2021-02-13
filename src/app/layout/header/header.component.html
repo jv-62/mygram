@@ -1,0 +1,36 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/home">MyGram</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li *ngIf="!exist" class="nav-item">
+          <a class="nav-link" routerLink="/signin" routerLinkActive="active">Signin</a>
+        </li>
+        <li *ngIf="!exist" class="nav-item">
+          <a class="nav-link" routerLink="/signup" routerLinkActive="active">Signup</a>
+        </li>
+        <li *ngIf="exist" class="nav-item">
+          <a class="nav-link" [routerLink]="['/home/profile']" [queryParams]="{id: exist['id']}"
+            routerLinkActive="active">Profile</a>
+        </li>
+        <li *ngIf="exist" class="nav-item">
+          <a class="nav-link" routerLink="/home/create-post" routerLinkActive="active">Add post</a>
+        </li>
+        <li *ngIf="exist" class="nav-item">
+          <a class="nav-link" (click)="logout()">Logout</a>
+          <!-- <button mat-icon-button [matMenuTriggerFor]="menu" style="color: white;">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/home/editprofile">Edit Profile</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+          </mat-menu> -->
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

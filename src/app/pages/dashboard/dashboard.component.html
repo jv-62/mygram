@@ -1,0 +1,82 @@
+<div class="container" *ngIf="Posts">
+    <br>
+    <div class="row">
+        <div class="col-7">
+            <div *ngFor="let item of Posts" class="row">
+                <div class="col">
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                            <div mat-card-avatar> <img [src]="item.UserImage" class="profile-picture" height="50" width="50"> </div>
+                            <mat-card-title><a class="profileLinks" [routerLink]="['/home/profile']"
+                                    [queryParams]="{id: item.PostedBy}">
+                                    <b>{{item.PostedByName}}</b></a></mat-card-title>
+                            <mat-card-subtitle>{{item.Title}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <div *ngIf="User.Name === item.PostedByName" (click)="onDelete(item.id)" class="delete-icon"><mat-icon>delete</mat-icon></div>
+                        <img mat-card-image (dblclick)="onLike(item.id)" [src]="item.Image" class="Image">
+                        <mat-card-content>
+                            <mat-card-subtitle *ngIf="item.PostCreatedOn">Posted on {{item.PostCreatedOn | date:'MMM d, y'}} at {{item.PostCreatedOn | date:'h:mm a'}}</mat-card-subtitle>
+                            <mat-card-subtitle>{{item.Description}}</mat-card-subtitle>
+                            <p>
+                                <span *ngFor="let tag of item.HashTag">{{tag}}</span>
+                            </p>
+                            <p *ngFor="let comment of item.Comments; index as i; first as isFirst">
+                                <span *ngIf="i == 0">
+                                    <a class="profileLinks" [routerLink]="['/home/profile']"
+                                        [queryParams]="{id: comment.UserId}">
+                                        <b>{{comment.UserName}}</b></a> :-
+                                    {{comment.Comment}}
+                                </span>
+                                <span *ngIf="i < 1">
+                                    <br>&nbsp;
+                                    <a [routerLink]="['/home/viewpost']" *ngIf="item.Comments.length-1 != 0"
+                                        [queryParams]="{id: item.id}" class="showMore">Show {{item.Comments.length-1}}
+                                        more comments</a>
+                                </span>
+                            </p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <div class="row">
+                                <div class="col-3">
+                                    <button mat-mini-fab color="{{item.likeColor}}" (click)="onLike(item.id)">
+                                        <mat-icon>{{item.likeIcon}}</mat-icon>
+                                    </button>
+                                    {{item.Likes.length}} Likes
+                                </div>
+                                <div class="col-8">
+                                    <form [formGroup]="addComment" (ngSubmit)="onComment(item.id)">
+                                        <mat-form-field appearance="legacy">
+                                            <mat-label>Add a Comment</mat-label>
+                                            <input matInput formControlName="Comment">
+                                        </mat-form-field>
+                                    </form>
+                                </div>
+                                <div class="col-1">
+                                    <button style="float: right;" mat-mini-fab color="primary"
+                                        (click)="instaProfile(item.PostedBy)">
+                                        <mat-icon>reply</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </mat-card-actions>
+                    </mat-card>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 justify-content-end">
+            <mat-card class="usersCard">
+                <h4 class="text-center">Recently Joined Users</h4>
+                <div *ngFor="let item of Users">
+                    <mat-card style="cursor: pointer;" [routerLink]="['/home/profile']" [queryParams]="{id: item.id}">
+                        <h4 class="userLink">
+                            <img [src]="item.Image" class="userImage" height="50" width="50">
+                            {{item.Name}}
+                        </h4>
+                    </mat-card>
+                    <br>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>

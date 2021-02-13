@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ngx-toastr/toastr";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  height: 100%;
+  background-color: rgb(199, 199, 199);
+  margin: 0;
+}
+
+p,a,h1,h2,h3,h4,h5,h6,b,span,div,mat-card-subtitle,mat-card-header,mat-card,mat-card-title{
+  font-family: initial;
+}

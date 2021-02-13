@@ -1,0 +1,42 @@
+<div class="container" *ngIf="Post">
+    <br>
+    <a mat-mini-fab color="primary" (click)="onclickBack()">
+        <mat-icon>reply</mat-icon>
+    </a>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar> <img [src]="Post.UserImage" height="50" width="50"> </div>
+            <mat-card-title><a class="profileLinks" [routerLink]="['/home/profile/']"
+                    [queryParams]="{id: Post.PostedBy}">
+                    <b>{{Post.PostedByName}}</b></a></mat-card-title>
+            <mat-card-subtitle>{{Post.Title}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="Post.Image" class="Image">
+        <mat-card-content>
+            <mat-card-subtitle *ngIf="Post.PostCreatedOn">Posted on {{Post.PostCreatedOn | date:'MMM d, y'}} at {{Post.PostCreatedOn | date:'h:mm a'}}</mat-card-subtitle>
+            <mat-card-subtitle>{{Post.Description}}</mat-card-subtitle>
+            <p>
+                <span *ngFor="let tag of Post.HashTag">{{tag}}</span>
+            </p>
+            <p *ngFor="let comment of Post.Comments">
+                <a class="profileLinks" [routerLink]="['/home/profile/']" [queryParams]="{id: comment.UserId}">
+                    <b>{{comment.UserName}}</b></a> :-
+                {{comment.Comment}}
+            </p>
+            <form [formGroup]="addComment" (ngSubmit)="onComment(Post.id)">
+                <mat-form-field appearance="legacy">
+                    <mat-label>Add Comment</mat-label>
+                    <input matInput formControlName="Comment">
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-mini-fab color="warn" (click)="onLike(Post.id)">
+                <mat-icon>favorite</mat-icon>
+            </button>
+            <button style="float: right;" mat-mini-fab color="primary" (click)="instaProfile(Post.PostedBy)">
+                <mat-icon>reply</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

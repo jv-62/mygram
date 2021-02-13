@@ -1,0 +1,53 @@
+.example-card {
+    max-width: 500px;
+    margin: auto auto;
+}
+.Image{
+    max-width: 500px;
+    max-height: 300px;
+}
+span.ng-star-inserted {
+    padding: 5px;
+    font-weight: 500;
+}
+.mat-form-field {
+    width: 100%;
+    margin-left: -17px;
+}
+a{
+    list-style-type: none;
+    color: black;
+    text-decoration: none;
+}
+b{
+    font-weight: 500;
+}
+.profileLinks:hover{
+    text-decoration-line: underline;
+}
+.usersCard{
+    background-color: rgb(231, 231, 231);
+}
+.userImage{
+    border-radius: 50%;
+}
+.userLink:hover{
+    text-decoration: underline;
+}
+.showMore{
+    color: grey;
+}
+.showMore:hover{
+    color: black;
+    text-decoration: underline;
+}
+.delete-icon>mat-icon:hover{
+    cursor: pointer;
+}
+.delete-icon{
+    float: right;
+    margin-top: -57px;
+}
+.profile-picture{
+    border-radius: 50%;
+}

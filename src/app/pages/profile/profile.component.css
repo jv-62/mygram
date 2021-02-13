@@ -1,0 +1,31 @@
+.image > img{
+    border-radius: 50%;
+    border: solid grey 2px;
+}
+.image{
+    float: left;
+    width: 30%;
+}
+.right-content{
+    float: left;
+    width: 60%;
+}   
+.card-div{
+    height: 100%;
+    width: 100%;
+}
+.col-md-4 > img {
+    height: 200px;
+    width: 359px;
+    border-radius: 5px;
+    margin: 1px;
+}
+.col-md-4{
+    padding: 0px;
+}
+.imagesCard{
+    padding: 0px;
+}
+b{
+    font-weight: 700;
+}

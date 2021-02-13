@@ -1,0 +1,55 @@
+<div class="container" *ngIf="UserData">
+    <br>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div class="image">
+                <img [src]="UserData.Image" height="200" width="200">
+            </div>
+            <div class="right-content">
+                <h3>{{UserData.userName}}
+                    <span *ngIf="self" style="cursor: pointer;float: right;" [routerLink]="['/home/edit-profile']"
+                        [queryParams]="{id: UserData.id}">
+                        <mat-icon>edit</mat-icon>
+                    </span>
+                    <button class="btn btn-primary" *ngIf="!self" (click)="followUser()">{{followText}}</button>
+                </h3>
+                <mat-card-content>
+                    <span>{{UserData.Posts}} <b>&nbsp;Posts</b></span>&nbsp;
+                    <span>{{UserData.Followers.length}} <b>&nbsp;Followers </b></span>&nbsp;
+                    <span>{{UserData.Following.length}} <b>&nbsp;Following</b></span>
+                </mat-card-content>
+            </div>
+        </mat-card-header>
+    </mat-card>
+    <br>
+    <mat-card class="example-card imagesCard">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4" *ngFor="let posts of UserData.UsersPosts">
+                    <img [src]="posts.Image" [routerLink]="['/home/viewpost']" [queryParams]="{id: posts.id}"
+                        height="200" width="300">
+                </div>
+            </div>
+        </div>
+    </mat-card>
+    <div *ngIf="UserData.UsersPosts == ''">
+        <mat-card class="example-card text-center">
+            <h4>You don't have any post yet.</h4>
+            <button mat-raised-button color="primary" [routerLink]="['/home/create-post']">Click here to add
+                Post</button>
+        </mat-card>
+    </div>
+</div>
+<div class="container" *ngIf="!UserData">
+    <br>
+    <mat-card class="example-card text-center">
+        <h4>Loading...</h4>
+    </mat-card>
+</div>
+<div class="container" *ngIf="UserData == ''">
+    <br>
+    <mat-card class="example-card text-center">
+        <h3 style="color: red;">Oops..!</h3>
+        <h4>No User Found</h4>
+    </mat-card>
+</div>

@@ -1,0 +1,10 @@
+.mat-form-field{
+    display: block !important;
+}
+.example-card {
+    max-width: 500px;
+    margin: 50px auto 50px auto;
+}
+.example-card > h3{
+    font-size: 30px;
+}

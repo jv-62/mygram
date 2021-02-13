@@ -1,0 +1,22 @@
+.mat-form-field{
+    display: block !important;
+}
+.example-card {
+    max-width: 500px;
+    margin: 30px auto 50px auto;
+}
+.PreviewImage{
+    display: block;
+    margin: auto auto;
+    text-align: center;
+}
+img{
+    margin: 0px 0 0 98px;
+    padding: 18px;
+    border-radius: 50%;
+    width: 240px;
+    height: 240px;
+}
+.example-card > h3{
+    font-size: 30px;
+}

@@ -1,0 +1,75 @@
+<app-full-loader [display]="showLoader"></app-full-loader>
+<div class="container">
+  <mat-card class="example-card">
+    <h3 class="text-center">Sign Up</h3>
+    <form [formGroup]="signupForm" #oiForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="col-md-12">
+        <!-- Image code  -->
+        <div class="mx-auto">
+          <img [src]="imgURL" *ngIf="imgURL">
+          <img [src]="image" *ngIf="!imgURL">
+        </div>
+        <div class="PreviewImage">
+          <input #file type="file" hidden="true" accept='image/*' formControlName="Image" required mat-flat-button
+            (change)="preview(file.files)" />
+          <a mat-flat-button color="primary" style="text-decoration: none;" (click)="file.click()">Choose Profile
+            Image</a>
+          <mat-error class="text-center" *ngIf="signupForm.hasError('required','Image') && oiForm.submitted">
+            Image is required
+          </mat-error>
+        </div>
+        <hr>
+        <!-- Image code end  -->
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="John Doe" formControlName="Name" required />
+          <mat-error *ngIf="f.Name.errors && f.Name.touched">
+            <div *ngIf="f.Name.errors.required">Name is required</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input matInput placeholder="ex:- itsjohn" formControlName="userName" required />
+          <mat-error *ngIf="f.userName.errors && f.userName.touched">
+            <div *ngIf="f.userName.errors.required">User Name is required</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Number</mat-label>
+          <input matInput type="text" placeholder="123 456 7891" [textMask]="mobileNo" formControlName="Number"
+            required />
+          <mat-error *ngIf="f.Number.errors && f.Number.touched">
+            <div *ngIf="f.Number.errors.required">Number is required</div>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Ex:- john@gmail.com" formControlName="EmailId" required />
+          <mat-error *ngIf="f.EmailId.errors && f.EmailId.touched">
+            <div *ngIf="f.EmailId.errors.required">EmailId is required</div>
+            <div *ngIf="f.EmailId.errors.pattern">
+              Email must be a valid email address
+            </div>
+          </mat-error>
+        </mat-form-field>
+        <mat-error>
+          <div *ngIf="EmailId != null">
+            <div>{{ EmailId }} is already exist..!</div>
+          </div>
+        </mat-error>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="Password" required />
+          <mat-error *ngIf="f.Password.errors && f.Password.touched">
+            <div *ngIf="f.Password.errors.required">Password is required</div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-success">
+          {{ btnText }}
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
