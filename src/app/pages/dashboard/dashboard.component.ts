@@ -65,7 +65,6 @@ export class DashboardComponent implements OnInit {
 
   onComment(id) {
     const funName = 'Comments';
-    // this.addComment;
     this.addComment.value.UserId = this.User.id;
     this.addComment.value.PostId = id;
 
@@ -82,6 +81,12 @@ export class DashboardComponent implements OnInit {
       let postData: any = res;
       for (let i = 0; i < postData.Likes.length; i++) {
         if (postData.Likes[i] == this.User.id) {
+          let data = postData['Likes'].findIndex(index => index == this.User.id)
+          postData['Likes'].splice(data, 1);
+          delete postData["Comments"];
+          this._service.updatePostById(postId, postData).subscribe(response => {
+            this.getData();
+          })
           return false;
         }
       }
@@ -95,15 +100,15 @@ export class DashboardComponent implements OnInit {
 
   onDelete(id) {
     this.confirmationDialogService.confirm('Please confirm..! ', 'Do you really want to delete this post?')
-    .then((confirmed) => { 
-      console.log('User confirmed:', confirmed)
-      if(confirmed){
-        this._service.deleteUser(id).subscribe(response => {
-          this.getData();
-        })
-      }
-    })
-    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+      .then((confirmed) => {
+        console.log('User confirmed:', confirmed)
+        if (confirmed) {
+          this._service.deleteUser(id).subscribe(response => {
+            this.getData();
+          })
+        }
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 
   instaProfile(PostedBy) {
