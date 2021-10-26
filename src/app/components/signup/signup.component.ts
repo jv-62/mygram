@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
   EmailId: 'null';
   showLoader: boolean = false;
 
-  image = '../../../assets/Avtar.jpg';
+  image = '../../../assets/Avtar.png';
   imagePath: any;
   imgURL: any;
   message: string;

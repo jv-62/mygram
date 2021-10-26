@@ -20,7 +20,7 @@ export class CreatepostComponent implements OnInit {
   addPostForm: FormGroup;
   btnText: string;
   element = [];
-  image = '../../../assets/Avtar.jpg';
+  image = '../../../assets/Avtar.png';
   imagePath: any;
   imgURL: any;
   message: string;
